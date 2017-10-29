@@ -34,14 +34,14 @@ RUN set -x && \
     make install && \
     rm -rf /tmp/* && \
     mkdir -p /opt/getdns/var/run/ && \
-    chown getdns:getdns /opt/getdns/var/run/
+    chmod 777 /opt/getdns/var/run/
 
 COPY stubby.yml /opt/getdns/etc/stubby/stubby.yml
 COPY named.conf.options /etc/bind/named.conf.options
 COPY named.conf.local /etc/bind/named.conf.local
 COPY for.larsdebruin.loc /etc/bind/for.larsdebruin.loc
 
-EXPOSE 53/UDP
+EXPOSE 53
 
 COPY entrypoint.sh /opt/
 RUN chmod 777 /opt/entrypoint.sh
