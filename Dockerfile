@@ -36,10 +36,14 @@ RUN set -x && \
     mkdir -p /opt/getdns/var/run/ && \
     chmod 777 /opt/getdns/var/run/
 
+RUN set -x && \
+   curl -L https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 > /usr/sbin/gosu && \
+   chmod +x /usr/sbin/gosu
+
+
 COPY stubby.yml /opt/getdns/etc/stubby/stubby.yml
 COPY named.conf.options /etc/bind/named.conf.options
 COPY named.conf.local /etc/bind/named.conf.local
-COPY for.larsdebruin.loc /etc/bind/for.larsdebruin.loc
 
 EXPOSE 53
 
